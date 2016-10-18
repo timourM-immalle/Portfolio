@@ -53,4 +53,9 @@ public static int TijdInSec(int h, int min, int s)
 		Console.WriteLine(seconden);
 	}
 ```
+
+5.12 (een uitbreiding van 5.10):
+https://dotnetfiddle.net/DDHHKX
+
+
 # Javascript
