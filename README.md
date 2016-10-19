@@ -62,7 +62,7 @@ https://dotnetfiddle.net/DDHHKX
 ```
 private void Ellipse(int straal)
 {
-Ellipse ell = new Ellipse;
+Ellipse ell = new Ellipse();
 ell.Width = straal;
 ell.Height = straal;
 ell.Margin = new Thickness(10, 10, 0, 0);
