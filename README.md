@@ -58,7 +58,7 @@ public static int TijdInSec(int h, int min, int s)
 https://dotnetfiddle.net/DDHHKX
 
 ## Gewone methode vs die met return-waarde
-* Als u een gewone methode aanroept, **doet** het programma er iets mee zoals het tekenen van een ellipse:
+* Als u een gewone methode aanroept, **doet** het programma er iets mee als u dat later (of eerder) opvraagt, zoals het tekenen van een ellipse:
 ```
 private void Ellipse(int straal)
 {
@@ -68,6 +68,7 @@ ell.Height = straal;
 ell.Margin = new Thickness(10, 10, 0, 0);
 ell.Fill = new SolidColorBrush(Colors.Black);
 canvas.children.Add(ell);
+}
 ```
 dit moet altijd "void" zijn.
 
