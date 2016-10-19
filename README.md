@@ -1,6 +1,6 @@
 # Portfolio
 # Csharp
-oef 5.8:
+## oef 5.8:
 https://dotnetfiddle.net/RKK9fm
 
 oef 5.9 (Voluma van kubus berekenen):
@@ -19,7 +19,7 @@ public static double KubusVolume(double zijde)
 	}
   ```
   
-  oef 5.10:
+##  oef 5.10:
   https://dotnetfiddle.net/sRYs4Y
   ```
   public static double OppCirkel(double straal)
@@ -35,7 +35,7 @@ public static double KubusVolume(double zijde)
 	}
 ```
 
-oef 5.11:
+## oef 5.11:
 https://dotnetfiddle.net/csaxjl
 ```
 public static int TijdInSec(int h, int min, int s)
@@ -54,8 +54,23 @@ public static int TijdInSec(int h, int min, int s)
 	}
 ```
 
-5.12 (een uitbreiding van 5.10):
+## 5.12 (een uitbreiding van 5.10):
 https://dotnetfiddle.net/DDHHKX
 
+## Gewone methode vs die met return-waarde
+* Als u een gewone methode aanroept, **doet** het programma er iets mee zoals het tekenen van een ellipse:
+```
+private void Ellipse(int straal)
+{
+Ellipse ell = new Ellipse;
+ell.Width = straal;
+ell.Height = straal;
+ell.Margin = new Thickness(10, 10, 0, 0);
+ell.Fill = new SolidColorBrush(Colors.Black);
+canvas.children.Add(ell);
+```
+dit moet altijd "void" zijn.
+
+* Als u een methode met een `return`-statement aanroept, kan u er effectief mee verder **werken/rekenen**, bv. als in oef **5.11**. U kan met `TijdInSec()` effectief mee verder werken het als een variable declareren en zelfs op berekenen als u dat wil. Dit heeft altijd een type, bv. een int. als de uiteindelijke waarde(n) een geheel getal (integer) moet zijn.
 
 # Javascript
