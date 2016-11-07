@@ -5,7 +5,7 @@ https://dotnetfiddle.net/RKK9fm
 
 oef 5.9 (Voluma van kubus berekenen):
 https://dotnetfiddle.net/zuhvul
-```
+```C#
 public static double KubusVolume(double zijde)
 	{
 		double voluma = Math.Pow(zijde, 3);
@@ -21,7 +21,7 @@ public static double KubusVolume(double zijde)
   
 ##  oef 5.10:
   https://dotnetfiddle.net/sRYs4Y
-  ```
+  ```C#
   public static double OppCirkel(double straal)
 	{
 		double oppervlakte = Math.Pow(straal, 2) * Math.PI;
@@ -37,7 +37,7 @@ public static double KubusVolume(double zijde)
 
 ## oef 5.11:
 https://dotnetfiddle.net/csaxjl
-```
+```C#
 public static int TijdInSec(int h, int min, int s)
 	{
 		int urenNaarSeconden = h * 3600;
@@ -59,7 +59,7 @@ https://dotnetfiddle.net/DDHHKX
 
 ## Gewone methode vs die met return-waarde
 * Als u een gewone methode aanroept, **doet** het programma er iets mee als u dat later (of eerder) opvraagt, zoals het tekenen van een ellipse:
-```
+```C#
 private void Ellipse(int straal)
 {
 Ellipse ell = new Ellipse();
@@ -75,8 +75,8 @@ dit moet altijd "void" zijn.
 * Als u een methode met een `return`-statement aanroept, kan u er effectief mee verder **werken/rekenen**, bv. als in oef **5.11**. U kan met `TijdInSec()` effectief mee verder werken het als een variable declareren en zelfs op berekenen als u dat wil. Dit heeft altijd een type, bv. een int. als de uiteindelijke waarde(n) een geheel getal (integer) moet zijn.
 
 ## vb.-oef van H 6.8 De klasse DispatcherTimer: Raindrops
-Voeg eerst bij de ``using``-namespaces ``using System.Windows.Threading;`` toe!
-``
+Voeg eerst bij de ```using```-namespaces ```using System.Windows.Threading;``` toe!
+```C#
 namespace Raindrups
 {
     /// <summary>
@@ -142,7 +142,7 @@ namespace Raindrups
         }
     }
 }
-``
+```
 Voeg een label, 3 knoppen, een slider en een canvas toe. De canvas moet in de XAML-code ``height``- en ``width``-properties hebben!
 PS: ik was te lui om in de naam van de namespace de veranderen (er staat "Raindrups" i.p.v. "Raindrops")
 
