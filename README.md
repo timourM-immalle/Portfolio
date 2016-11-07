@@ -74,4 +74,76 @@ dit moet altijd "void" zijn.
 
 * Als u een methode met een `return`-statement aanroept, kan u er effectief mee verder **werken/rekenen**, bv. als in oef **5.11**. U kan met `TijdInSec()` effectief mee verder werken het als een variable declareren en zelfs op berekenen als u dat wil. Dit heeft altijd een type, bv. een int. als de uiteindelijke waarde(n) een geheel getal (integer) moet zijn.
 
+## vb.-oef van H 6.8 De klasse DispatcherTimer: Raindrops
+Voeg eerst bij de ``using``-namespaces ``using System.Windows.Threading;`` toe!
+``
+namespace Raindrups
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private Random random = new Random();
+        private double x, y, grootte;
+        private SolidColorBrush brush;
+        private DispatcherTimer timer = new DispatcherTimer();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            sliderLabel.Content = Convert.ToString(slider.Value);
+            brush = new SolidColorBrush(Colors.Blue);
+            timer.Interval = TimeSpan.FromMilliseconds(slider.Value);
+            timer.Tick += timer_Tick;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            x = random.Next(0, Convert.ToInt32(canvas.Width));
+            y = random.Next(0, Convert.ToInt32(canvas.Height));
+            grootte = random.Next(1, 40);
+
+            Ellipse ell = new Ellipse();
+            ell.Width = grootte;
+            ell.Height = ell.Width;
+            ell.Stroke = brush;
+            ell.Fill = brush;
+            ell.Margin = new Thickness(x, y, 0, 0);
+            canvas.Children.Add(ell);
+
+            //nieuw interval voor timer
+            timer.Stop();
+            int ms = random.Next(Convert.ToInt32(slider.Value));
+            timer.Interval = TimeSpan.FromMilliseconds(ms);
+            timer.Start();
+        }
+
+        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int timeGap = Convert.ToInt32(slider.Value);
+            sliderLabel.Content = Convert.ToString(timeGap);
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+        }
+
+        private void leegButton_Click(object sender, RoutedEventArgs e)
+        {
+            canvas.Children.Clear();
+        }
+    }
+}
+``
+Voeg een label, 3 knoppen, een slider en een canvas toe. De canvas moet in de XAML-code ``height``- en ``width``-properties hebben!
+PS: ik was te lui om in de naam van de namespace de veranderen (er staat "Raindrups" i.p.v. "Raindrops")
+
 # Javascript
