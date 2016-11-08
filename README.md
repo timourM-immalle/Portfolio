@@ -144,6 +144,10 @@ namespace Raindrups
 }
 ```
 Voeg een label, 3 knoppen, een slider en een canvas toe. De canvas moet in de XAML-code ``height``- en ``width``-properties hebben!
+iets als dit:
+```XAML
+<Canvas x:Name="canvas" Width="420" Height="299" Background="LightGray" Margin="97,10,0,10"/>
+```
 PS: ik was te lui om in de naam van de namespace de veranderen (er staat "Raindrups" i.p.v. "Raindrops")
 
 # Javascript
