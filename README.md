@@ -150,4 +150,32 @@ iets als dit:
 ```
 PS: ik was te lui om in de naam van de namespace de veranderen (er staat "Raindrups" i.p.v. "Raindrops")
 
+##Extra: ```Timer``` in Console-app
+```C#
+namespace ConsoleTimer
+{
+    class Program
+    {
+        private static Random rnd = new Random();
+        private static Timer timer = new Timer();
+
+        static void Main(string[] args)
+        {
+            int interval = rnd.Next(1500);
+            timer.Interval = Convert.ToDouble(interval);
+            timer.Elapsed += Timer_Elapsed;
+
+            timer.Start();
+            Console.ReadLine();
+        }
+
+        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Console.WriteLine("hallo");
+        }
+    }
+}
+```
+Deze code print om de rnd aantal seconden het woorde **"hallo"** af. ``rnd`` is een ```Random``` van max. 1,5 s (1500 ms). In een console-app is het i.p.v. ```C# timer.Tick```, ```C# timer.Elapsed```. ```C# Console.Readline()``` wacht totdat u iets invoert vooraleer het het programma gaat sluiten. Hij leest als het ware de input. Als u op ``Enter`` drukt, zal het stoppen en als u een letter intypt komt dat erbij op te staan :satisfied:.
+
 # Javascript
