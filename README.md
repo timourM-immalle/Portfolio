@@ -176,6 +176,6 @@ namespace ConsoleTimer
     }
 }
 ```
-Deze code print om de rnd aantal seconden het woorde **"hallo"** af. ``rnd`` is een ```Random``` van max. 1,5 s (1500 ms). In een console-app is het i.p.v. ```C# timer.Tick```, ```C# timer.Elapsed```. ```C# Console.Readline()``` wacht totdat u iets invoert vooraleer het het programma gaat sluiten. Hij leest als het ware de input. Als u op ``Enter`` drukt, zal het stoppen en als u een letter intypt komt dat erbij op te staan :satisfied:.
+Deze code print om de rnd aantal seconden het woorde **"hallo"** af. ``rnd`` is een ```Random``` van max. 1,5 s (1500 ms). In een console-app is het i.p.v. ```timer.Tick```, ``` timer.Elapsed```. ```Console.Readline()``` wacht totdat u iets invoert vooraleer het het programma gaat sluiten. Hij leest als het ware de input. Als u op ``Enter`` drukt, zal het stoppen en als u een letter intypt komt dat erbij op te staan :satisfied:.
 
 # Javascript
