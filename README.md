@@ -206,4 +206,57 @@ static void Main(string[] args)
 ```
 PS: bij de enkelvoudige iteratie, **moet** u als tweede vergelijkingsoperator "```i <= 100```" invullen, i.p.v. "```i == 100```", omdat ```i``` in het begint gelijk is aan 1 en niet aan 100, maar wel kleiner is dan of gelijk aan 100!
 
+## oef 1 en 2 over de enkelvoudige en tweevoudige selectie
+```C#
+ private static double BerekenWeekLoon(double uurloon = 14, int aantalUurGewerkt = 38)
+        {
+            double weekloon = 0;
+            double standaardWeekloon = uurloon * aantalUurGewerkt;
+
+            if (aantalUurGewerkt <= 38)
+            {
+                weekloon = standaardWeekloon;
+            }
+            else
+            {
+                int overuren = aantalUurGewerkt - 38;
+                weekloon = (uurloon * 38) + (uurloon * 1.35 * overuren);
+            }
+
+            return weekloon;
+        }
+
+        private static double BerekenVP(double ap)
+        {
+            double vp = 2 * ap;
+
+            if (vp > 80)
+            {
+                vp -= vp * 0.3;
+            }
+            else if (vp > 40)
+            {
+                vp -= vp * 0.2;
+            }
+
+            return vp;
+        }
+
+        static void Main(string[] args)
+        {
+            //Weekloon
+            Console.WriteLine("Weekloon");
+            Console.WriteLine(BerekenWeekLoon(14, 45));
+            Console.WriteLine(BerekenWeekLoon(14, 25));
+            Console.WriteLine();
+
+            //VP
+            Console.WriteLine("Verkoopprijs");
+            Console.WriteLine(BerekenVP(36));
+            Console.WriteLine(BerekenVP(48));
+            Console.WriteLine(BerekenVP(85));
+            Console.WriteLine();
+        }
+```
+
 # Javascript
