@@ -1,10 +1,8 @@
 # Portfolio
 # Csharp
-<<<<<<< HEAD
 oef 5.8
 =======
 ## oef 5.8:
->>>>>>> 8c9a995696ead11e64e11a1379175581d3c87286
 https://dotnetfiddle.net/RKK9fm
 
 oef 5.9 (Voluma van kubus berekenen):
