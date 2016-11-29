@@ -294,6 +294,6 @@ public class Program
 	}
 }
 ```
-[https://dotnetfiddle.net/LddqqX]
+https://dotnetfiddle.net/LddqqX
 
 # Javascript
