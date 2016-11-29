@@ -263,4 +263,37 @@ PS: bij de enkelvoudige iteratie, **moet** u als tweede vergelijkingsoperator "`
         }
 ```
 
+##oef 8.11 Kinderliedje: 7 kleine Visjes
+Ik heb in dotnetfiddle een code geschreven die de tekst van "7 kleine visjes" print. Die 7 worden er telkens minder ... Dit was een beetje het allereerste 'horrorverhaaltje'.
+```C#
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		for (int aantalVissen = 7; aantalVissen > 0; aantalVissen--)
+		{
+			if (aantalVissen == 1)
+			{
+				Console.WriteLine(aantalVissen + " klein Visje zwom naar de zee.");
+				Console.WriteLine("``Dat is goed``, zei de moeder, ``maar ik ga niet mee.``");
+				Console.WriteLine("``Ik blijf liever in die vieze, ouwe sloot,");
+				Console.WriteLine("want in de zee daar zwemmen Haaien en die bijten je dan ... dood!``");
+				Console.WriteLine();
+			}
+			else
+			{
+				Console.WriteLine(aantalVissen + " kleine Visjes, die zwommen naar de zee");
+				Console.WriteLine("``Dat is goed``, zei de moeder, ``maar ik ga niet mee.``");
+				Console.WriteLine("``Ik blijf liever in die vieze, ouwe sloot,");
+				Console.WriteLine("want in de zee daar zwemmen Haaien en die bijten jullie dan ... dood!");
+				Console.WriteLine();
+			}
+		}
+	}
+}
+```
+[https://dotnetfiddle.net/LddqqX]
+
 # Javascript
