@@ -1,6 +1,6 @@
 # Portfolio
-# Csharp
-## oef 5.8:
+## Csharp
+### oef 5.8:
 https://dotnetfiddle.net/RKK9fm
 
 oef 5.9 (Voluma van kubus berekenen):
@@ -19,7 +19,7 @@ public static double KubusVolume(double zijde)
 	}
   ```
   
-##  oef 5.10:
+###  oef 5.10:
   https://dotnetfiddle.net/sRYs4Y
   ```C#
   public static double OppCirkel(double straal)
@@ -35,7 +35,7 @@ public static double KubusVolume(double zijde)
 	}
 ```
 
-## oef 5.11:
+### oef 5.11:
 https://dotnetfiddle.net/csaxjl
 ```C#
 public static int TijdInSec(int h, int min, int s)
@@ -54,10 +54,10 @@ public static int TijdInSec(int h, int min, int s)
 	}
 ```
 
-## 5.12 (een uitbreiding van 5.10):
+### 5.12 (een uitbreiding van 5.10):
 https://dotnetfiddle.net/DDHHKX
 
-## Gewone methode vs die met return-waarde
+### Gewone methode vs die met return-waarde
 * Als u een gewone methode aanroept, **doet** het programma er iets mee als u dat later (of eerder) opvraagt, zoals het tekenen van een ellipse:
 ```C#
 private void Ellipse(int straal)
@@ -74,7 +74,7 @@ dit moet altijd "void" zijn.
 
 * Als u een methode met een `return`-statement aanroept, kan u er effectief mee verder **werken/rekenen**, bv. als in oef **5.11**. U kan met `TijdInSec()` effectief mee verder werken het als een variable declareren en zelfs op berekenen als u dat wil. Dit heeft altijd een type, bv. een int. als de uiteindelijke waarde(n) een geheel getal (integer) moet zijn.
 
-## vb.-oef van H 6.8 De klasse DispatcherTimer: Raindrops
+### vb.-oef van H 6.8 De klasse DispatcherTimer: Raindrops
 Voeg eerst bij de ```using```-namespaces ```using System.Windows.Threading;``` toe!
 ```C#
 namespace Raindrups
@@ -150,7 +150,7 @@ iets als dit:
 ```
 PS: ik was te lui om in de naam van de namespace de veranderen (er staat "Raindrups" i.p.v. "Raindrops")
 
-##Extra: ```Timer``` in Console-app
+### Extra: ```Timer``` in Console-app
 ```C#
 namespace ConsoleTimer
 {
@@ -178,7 +178,7 @@ namespace ConsoleTimer
 ```
 Deze code print om de rnd aantal seconden het woorde **"hallo"** af. ``rnd`` is een ```Random``` van max. 1,5 s (1500 ms). In een console-app is het i.p.v. ```timer.Tick```, ``` timer.Elapsed```. ```Console.Readline()``` wacht totdat u iets invoert vooraleer het het programma gaat sluiten. Hij leest als het ware de input. Als u op ``Enter`` drukt, zal het stoppen en als u een letter intypt, komt dat erbij op te staan :satisfied:.
 
-##Mijn Fizz Buzz Test
+### Mijn Fizz Buzz Test
 In de Fizz Buzz Test was het de bedoeling dat er de getallen van 1 tot en met 100 wordt afgeprint op de console. Als het getal een veelvoud is van (deelbaar is door) 3, komt er "Fizz" in de plaats te staan. Als het getal een veelvoud is van 5, wordt er "Buzz" afgeprint en als het getal deelbaar is door beide getallen, komt er "FizzBuzz" in de plaats te staan. Dit is mijn code:
 ```C#
 static void Main(string[] args)
@@ -206,7 +206,7 @@ static void Main(string[] args)
 ```
 PS: bij de enkelvoudige iteratie, **moet** u als tweede vergelijkingsoperator "```i <= 100```" invullen, i.p.v. "```i == 100```", omdat ```i``` in het begint gelijk is aan 1 en niet aan 100, maar wel kleiner is dan of gelijk aan 100!
 
-## oef 1 en 2 over de enkelvoudige en tweevoudige selectie
+### oef 1 en 2 over de enkelvoudige en tweevoudige selectie
 ```C#
  private static double BerekenWeekLoon(double uurloon = 14, int aantalUurGewerkt = 38)
         {
@@ -259,7 +259,7 @@ PS: bij de enkelvoudige iteratie, **moet** u als tweede vergelijkingsoperator "`
         }
 ```
 
-##oef 8.11 Kinderliedje: 7 kleine Visjes
+### oef 8.11 Kinderliedje: 7 kleine Visjes
 Ik heb in dotnetfiddle een code geschreven die de tekst van "7 kleine visjes" print. Die 7 worden er telkens minder ... Dit was een beetje het allereerste 'horrorverhaaltje'.
 ```C#
 using System;
@@ -292,4 +292,4 @@ public class Program
 ```
 https://dotnetfiddle.net/LddqqX
 
-# Javascript
+## Javascript
