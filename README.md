@@ -313,7 +313,7 @@ XAML:
         <Button x:Name="btn4" Content="4" HorizontalAlignment="Left" Height="35" Margin="16,88,0,0" VerticalAlignment="Top" Width="47" Click="btn4_Click"/>
         <Button x:Name="btn5" Content="5" HorizontalAlignment="Left" Height="35" Margin="68,88,0,0" VerticalAlignment="Top" Width="47" Click="btn5_Click"/>
         <Button x:Name="btn6" Content="6" HorizontalAlignment="Left" Height="35" Margin="120,88,0,0" VerticalAlignment="Top" Width="47" Click="btn6_Click"/>
-        <Button x:Name="aftrekButton" Content="-" HorizontalAlignment="Left" Height="35" Margin="172,88,0,0" VerticalAlignment="Top" Width="47"/>
+        <Button x:Name="aftrekButton" Content="-" HorizontalAlignment="Left" Height="35" Margin="172,88,0,0" VerticalAlignment="Top" Width="47" Click="aftrekButton_Click"/>
         <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" Height="35" Margin="16,128,0,0" VerticalAlignment="Top" Width="47" Click="btn7_Click"/>
         <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" Height="35" Margin="68,128,0,0" VerticalAlignment="Top" Width="47" Click="btn8_Click"/>
         <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" Height="35" Margin="120,128,0,0" VerticalAlignment="Top" Width="47" Click="btn9_Click"/>
@@ -338,6 +338,14 @@ public partial class MainWindow : Window
             InitializeComponent();
         }
 
+	private void OpOperatorknopGeklikt()
+        {
+            cacheBlock.Text = schermBlock.Text;
+            cacheGetal = Convert.ToInt32(cacheBlock.Text);
+            schermBlock.Text = null;
+            huidigGetal = "";
+        }
+	
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             schermBlock.Text += Convert.ToString(1);
@@ -410,15 +418,18 @@ public partial class MainWindow : Window
 
         private void optelButton_Click(object sender, RoutedEventArgs e)
         {
-            cacheBlock.Text = schermBlock.Text;
-            cacheGetal = Convert.ToInt32(cacheBlock.Text);
-            schermBlock.Text = null;
-            huidigGetal = "";
+            OpOperatorknopGeklikt();
+        }
+	
+	private void aftrekButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpOperatorknopGeklikt();
         }
 
         private void uitkomstButton_Click(object sender, RoutedEventArgs e)
         {
             som = Convert.ToInt32(huidigGetal) + cacheGetal;
+	    verschil = cacheGetal - Convert.ToInt32(huidigGetal);
             schermBlock.Text = null;
             cacheBlock.Text = null;
             schermBlock.Text = Convert.ToString(som);
