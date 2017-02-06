@@ -438,4 +438,50 @@ public partial class MainWindow : Window
     }
 }
 ```
+##H10: in dit programma kunnen we erg veel ballonnen toevoegen, maar op den duur wordt het erg onhandig:
+```C#
+public partial class MainWindow : Window
+    {
+
+        private Ellipse ballon = new Ellipse();
+        private int bovenVerplaatsen = 100;
+
+        private Ellipse ballon2 = new Ellipse();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            ballon.Width = 50;
+            ballon.Height = ballon.Width;
+            ballon.Stroke = new SolidColorBrush(Colors.Red);
+            ballon.Margin = new Thickness(200, bovenVerplaatsen, 0, 0);
+            canvas.Children.Add(ballon);
+
+            ballon2.Width = 50;
+            ballon2.Height = ballon2.Width;
+            ballon2.Stroke = new SolidColorBrush(Colors.Blue);
+            ballon2.Margin = new Thickness(250, bovenVerplaatsen, 0, 0);
+            canvas.Children.Add(ballon2);
+        }
+
+        private void btnBewegen_Click(object sender, RoutedEventArgs e)
+        {
+            bovenVerplaatsen += 3;
+            ballon.Margin = new Thickness(200, bovenVerplaatsen, 0, 0);
+            ballon2.Margin = new Thickness(250, bovenVerplaatsen, 0, 0);
+        }
+
+        private void btnGroeien_Click(object sender, RoutedEventArgs e)
+        {
+            ballon.Width += 5;
+            ballon2.Width += 5;
+
+            ballon.Height = ballon.Width;
+            ballon2.Height = ballon2.Width;
+        }
+    }
+    ```
+We kunnen beter een aparte klasse maken die de ballonnen doet bewegen en groeien. Het maakt i.d.g. niet uit of de **klasse** ```public``` of ```private``` maken; ```public``` zorgt ervoor dat die klassen ook buiten de namespace ```WpfBallon``` (hier niet zichtbaar, maar is deze namespace), terwijl dat bij private alleen maar binnen deze namespace kunnen gebruiken.
+
 ## Javascript
