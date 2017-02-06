@@ -533,7 +533,7 @@ namespace WpfBallon
             }
         }
     }
-    ```
+```
 Voeg ook hier de nodige namespaces toe! U kan deze klasse als volgt aanroepen:
 ```C#
     namespace WpfBallon
