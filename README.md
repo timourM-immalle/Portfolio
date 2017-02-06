@@ -487,7 +487,7 @@ De klasse zetten we in een aparte file (Hoe?: RM op ```Project```-menu, ```Add``
 ```C#
 namespace WpfBallon
 {
-    class Ballon
+    public class Ballon
     {
             public Ellipse ballonnen;
             public int bovenVerplaatsen = 100;
