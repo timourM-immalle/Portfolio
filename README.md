@@ -483,5 +483,90 @@ public partial class MainWindow : Window
     }
     ```
 We kunnen beter een aparte klasse maken die de ballonnen doet bewegen en groeien. Het maakt i.d.g. niet uit of de **klasse** ```public``` of ```private``` maken; ```public``` zorgt ervoor dat die klassen ook buiten de namespace ```WpfBallon``` (hier niet zichtbaar, maar is deze namespace), terwijl dat bij private alleen maar binnen deze namespace kunnen gebruiken.
+De klasse zetten we in een aparte file (Hoe?: RM op ```Project```-menu, ```Add```, ```Class```):
+```C#
+namespace WpfBallon
+{
+    class Ballon
+    {
+            public Ellipse ballonnen;
+            public int bovenVerplaatsen = 100;
+            public int d = 20;
+            public int x = 50;
+            public int y = 50;
+
+            public Ballon()
+            {
+                MaakBallon();
+                VeranderBallon();
+            }
+
+            private void MaakBallon()
+            {
+                ballonnen = new Ellipse();
+                ballonnen.Stroke = new SolidColorBrush(Colors.Red);
+                ballonnen.StrokeThickness = 2;
+            }
+
+            private void VeranderBallon()
+            {
+                ballonnen.Width = d;
+                ballonnen.Height = ballonnen.Width;
+                ballonnen.Margin = new Thickness(x, y, 0, 0);
+            }
+
+            public void BeweegRechts(int xStap)
+            {
+                x += xStap;
+                VeranderBallon();
+            }
+
+            public void VeranderStraal(int r)
+            {
+                d += r;
+                VeranderBallon();
+            }
+
+            public void Tekenen(Canvas tekenCanvas)
+            {
+                tekenCanvas.Children.Add(ballonnen);
+            }
+        }
+    }
+    ```
+Voeg ook hier de nodige namespaces toe! U kan deze klasse als volgt aanroepen:
+```C#
+    namespace WpfBallon
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        Ballon ballon = new Ballon();
+        Ballon ballon2 = new Ballon();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            ballon.Tekenen(canvas);
+            ballon2.Tekenen(canvas);
+        }
+
+        private void btnBewegen_Click(object sender, RoutedEventArgs e)
+        {
+            ballon.BeweegRechts(20);
+            ballon2.BeweegRechts(50);
+        }
+
+        private void btnGroeien_Click(object sender, RoutedEventArgs e)
+        {
+            ballon.VeranderStraal(20);
+            ballon2.VeranderStraal(5);
+        }
+    }
+}
+```
 
 ## Javascript
