@@ -481,7 +481,7 @@ public partial class MainWindow : Window
             ballon2.Height = ballon2.Width;
         }
     }
-```
+    ```
 We kunnen beter een aparte klasse maken die de ballonnen doet bewegen en groeien. Het maakt i.d.g. niet uit of de **klasse** ```public``` of ```private``` maken; ```public``` zorgt ervoor dat die klassen ook buiten de namespace ```WpfBallon``` (hier niet zichtbaar, maar is deze namespace), terwijl dat bij private alleen maar binnen deze namespace kunnen gebruiken.
 De klasse zetten we in een aparte file (Hoe?: RM op ```Project```-menu, ```Add```, ```Class```):
 ```C#
