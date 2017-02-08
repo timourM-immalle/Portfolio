@@ -570,3 +570,72 @@ Voeg ook hier de nodige namespaces toe! U kan deze klasse als volgt aanroepen:
 ```
 
 ## Javascript
+valt nog te verbeteren:
+```HTML
+<!DOCTYPE html>
+<html>
+	<title>JavaScript06</title>
+	<style>
+		#klik
+		{
+			border: 1px solid red;
+			width: 20em;
+		}
+		
+		#vierkant
+		{
+			width: 100px;
+			height: width;
+		}
+	</style>
+	<body>
+		<button id="klik">Klik!</button>
+		<div id="vierkant" style="color:#FF0000">"Hi!"</div>
+		<button id="timer">Time!</button>
+		<button id="stopTimer" onclick="setInterval(SecondenTimen, 1000)">Stop timen!</button>
+		<p id="timeparagraaf" visibility="hidden"/>
+		<script>
+			var knop = document.getElementById("klik");
+			var figuur = document.getElementById("vierkant");
+			var btnTimer = document.getElementById("timer");
+			var btnStopTimer = document.getElementById("stopTimer");
+			var tijdsinterval;
+			
+			function VeranderAchtergrond()
+			{
+				console.log("U kan klikken, hoera!!!");
+				knop.style.backgroundColor="green";
+			}
+			
+			function HoverFiguur()
+			{
+				console.log("Ga weg!!!");
+				figuur.style.backgroundColor="green";
+			}
+			
+			function Kleur()
+			{
+				btnStopTimer.style.backgroundColor = "red";
+			}
+			
+			function SecondenTimen()
+			{
+				var i = 0;
+				
+				timeparagraaf.style.visibility = "visible";
+				timeparagraaf.innerHTML = i;
+				i++;
+			}
+			
+			knop.addEventListener("click", VeranderAchtergrond);
+			figuur.addEventListener("mouseover", HoverFiguur);
+			figuur.addEventListener("mouseout", function (){
+				console.log("Dank u!");
+				figuur.style.backgroundColor="red";
+			});
+			btnTimer.addEventListener("click", setTimeout(SecondenTimen, 1000));
+			btnStopTimer.addEventListener("click", Kleur);
+		</script>
+	</body>
+</html>
+```
