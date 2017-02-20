@@ -438,7 +438,7 @@ public partial class MainWindow : Window
     }
 }
 ```
-##H10: in dit programma kunnen we erg veel ballonnen toevoegen, maar op den duur wordt het erg onhandig:
+###H10: in dit programma kunnen we erg veel ballonnen toevoegen, maar op den duur wordt het erg onhandig:
 ```C#
 public partial class MainWindow : Window
     {
@@ -567,6 +567,35 @@ Voeg ook hier de nodige namespaces toe! U kan deze klasse als volgt aanroepen:
         }
     }
 }
+```
+###10.5 Dobbelstenen
+in de klasse ```Dobbelstenen``` Let op: het maken van een contructor waarin u een methode aanroept:
+```C#
+public class Dobbelsteen
+    {
+        private static Random rnd = new Random();
+        private int waarde;
+
+        public Dobbelsteen()
+        {
+            Werp();
+        }
+
+        public void Werp()
+        {
+            waarde = rnd.Next(1, 6);
+        }
+
+        public int Waarde
+        {
+           get { return waarde; }
+        }
+    }
+```
+De constructor kan u herkennen aan (dezelfde naam als de klasse en) aan het feit dat het ``` public```, maar geen ```void``` of zo is ... Wel roept ie methods aan. ```rnd``` moet ```static``` zijn, omdat ie binnen deze klasse blijft + om te vermijden dat ie verschillende ```Random```-objecten aanmaakt! Gebruik NOOIT haakjes bij properties, noch bij het maken, noch bij de aanroep! Maak het object eerst aan en daarna kan u de property gebruiken:
+```C#
+Dobbelsteen dobbel = new Dobbelsteen();
+lblDobbelsteen.Content = Convert.ToString(dobbel.Waarde);
 ```
 
 ## Javascript
