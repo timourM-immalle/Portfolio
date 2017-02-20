@@ -583,7 +583,7 @@ public class Dobbelsteen
 
         public void Werp()
         {
-            waarde = rnd.Next(1, 6);
+            waarde = rnd.Next(1, 7);
         }
 
         public int Waarde
@@ -597,6 +597,7 @@ De constructor kan u herkennen aan (dezelfde naam als de klasse en) aan het feit
 Dobbelsteen dobbel = new Dobbelsteen();
 lblDobbelsteen.Content = Convert.ToString(dobbel.Waarde);
 ```
+PS: bij een ```Random```-klasse is de minValue altijd incl., maar de maxValue excl.!!!
 
 ## Javascript
 valt nog te verbeteren:
