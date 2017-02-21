@@ -598,6 +598,7 @@ Dobbelsteen dobbel = new Dobbelsteen();
 lblDobbelsteen.Content = Convert.ToString(dobbel.Waarde);
 ```
 PS: bij een ```Random```-klasse is de minValue altijd incl., maar de maxValue excl.!!!
+PS: Geef uw klasse niet/nooit dezelfde naam als uw project!
 
 ## Javascript
 valt nog te verbeteren:
