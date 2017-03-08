@@ -600,6 +600,117 @@ lblDobbelsteen.Content = Convert.ToString(dobbel.Waarde);
 PS: bij een ```Random```-klasse is de minValue altijd incl., maar de maxValue excl.!!!
 PS: Geef uw klasse niet/nooit dezelfde naam als uw project!
 
+###H13: Boodschappenlijst
+Een 'grote' oef in het begin was er een oef van een boodschappenlijst. Mijn XAML ziet er als volgt uit:
+```XAML
+<Window x:Class="H13Boodschappen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:H13Boodschappen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <ListBox x:Name="boodschappenlijst" HorizontalAlignment="Left" Height="299" Margin="353,10,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="boodschappenlijst_SelectionChanged">
+            <ListBoxItem>brood</ListBoxItem>
+            <ListBoxItem>melk</ListBoxItem>
+            <ListBoxItem>koffie</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="txtToevoegen" HorizontalAlignment="Left" Height="25" Margin="10,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212"/>
+        <Button x:Name="btnToevoegen" Content="toevoegen ~>" HorizontalAlignment="Left" Height="25" Margin="227,91,0,0" VerticalAlignment="Top" Width="121" Click="btnToevoegen_Click"/>
+        <Label x:Name="lblAantalItems" Content="0" HorizontalAlignment="Left" Height="25" Margin="233,135,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="label_Copy" Content="aantal items:" HorizontalAlignment="Left" Height="25" Margin="109,135,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="lblIndex" Content="/" HorizontalAlignment="Left" Height="25" Margin="232,165,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="label_Copy2" Content="geselecteerde index:" HorizontalAlignment="Left" Height="30" Margin="96,160,0,0" VerticalAlignment="Top" Width="126"/>
+        <Label x:Name="lblItem" Content="/" HorizontalAlignment="Left" Height="25" Margin="232,195,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="label_Copy4" Content="geselecteerde item:" HorizontalAlignment="Left" Height="34" Margin="111,195,0,0" VerticalAlignment="Top" Width="116"/>
+        <Button x:Name="btnVerwijderen" Content="verwijderen" HorizontalAlignment="Left" Height="25" Margin="227,61,0,0" VerticalAlignment="Top" Width="121" Click="btnVerwijderen_Click"/>
+        <TextBox x:Name="txtToevoegenIn" HorizontalAlignment="Left" Height="25" Margin="10,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212"/>
+        <Button x:Name="btnToevoegenIn" Content="voeg toe in:" HorizontalAlignment="Left" Height="24" Margin="227,37,0,0" VerticalAlignment="Top" Width="71" Click="btnToevoegenIn_Click"/>
+        <TextBox x:Name="txtInvoegindex" HorizontalAlignment="Left" Height="24" Margin="309,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39"/>
+    </Grid>
+</Window>
+```
+en mijn code:
+```C#
+public partial class MainWindow : Window
+{
+        private int aantalItems;
+
+        private void TelItems()
+        {
+            aantalItems = boodschappenlijst.Items.Count;
+        }
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            txtToevoegen.Focus();
+
+            //IList lijst = boodschappenlijst.Items;
+            //aantalItems = lijst.Count;
+            TelItems();
+
+            lblAantalItems.Content = aantalItems;
+        }
+
+        private void btnToevoegen_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtToevoegen.Text != "")
+            {
+                ListBoxItem item = new ListBoxItem();
+                item.Content = txtToevoegen.Text;
+                boodschappenlijst.Items.Add(item);
+
+                TelItems();
+                lblAantalItems.Content = aantalItems;
+            }
+            else
+            {
+                txtToevoegen.Focus();
+            }
+        }
+
+        private void boodschappenlijst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = boodschappenlijst.SelectedIndex;
+
+            if (boodschappenlijst.SelectedValue != null)
+            {
+                lblIndex.Content = index;
+
+                //ListBoxItem item = (ListBoxItem)boodschappenlijst.Items[index];
+                //lblItem.Content = item.Content;
+                ////op 1 regel:
+                //lblItem.Content = ((ListBoxItem)boodschappenlijst.Items[index]).Content;
+                ////is hetzelfde als:
+                lblItem.Content = ((ListBoxItem)boodschappenlijst.SelectedValue).Content;
+            }
+            else
+            {
+                TelItems();
+                lblAantalItems.Content = aantalItems;
+                lblIndex.Content = "/";
+                lblItem.Content = "/";
+            }
+        }
+
+        private void btnVerwijderen_Click(object sender, RoutedEventArgs e)
+        {
+            boodschappenlijst.Items.RemoveAt(boodschappenlijst.SelectedIndex);
+        }
+
+        private void btnToevoegenIn_Click(object sender, RoutedEventArgs e)
+        {
+            if(txtInvoegindex.Text != "" && Convert.ToInt32(txtInvoegindex.Text) >= 0 && Convert.ToInt32(txtInvoegindex.Text) < aantalItems)
+            {
+                boodschappenlijst.Items.Insert(Convert.ToInt32(txtInvoegindex.Text), txtToevoegenIn.Text);
+            }
+        }
+}
+```
+
 ## Javascript
 valt nog te verbeteren:
 ```HTML
