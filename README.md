@@ -648,8 +648,6 @@ public partial class MainWindow : Window
             InitializeComponent();
             txtToevoegen.Focus();
 
-            //IList lijst = boodschappenlijst.Items;
-            //aantalItems = lijst.Count;
             TelItems();
 
             lblAantalItems.Content = aantalItems;
