@@ -708,6 +708,16 @@ public partial class MainWindow : Window
         }
 }
 ```
+## C# Interactive
+Dit valt een beetje te vergelijken met de JavaScript-console.
+Met bv. de volgende code:
+```C#
+string fileNamenText = File.ReadAllText("\\\\imma-fs-0003\\timour.meeusen$\\documents\\namen.csv");
+```
+kan u makkelijk de tekst in een bestaande file lezen. De volgende code kan u helpen het pad de vinden:
+```C#
+Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
+```
 
 ## Javascript
 valt nog te verbeteren:
