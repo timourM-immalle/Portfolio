@@ -718,6 +718,16 @@ kan u makkelijk de tekst in een bestaande file lezen. De volgende code kan u hel
 ```C#
 Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
 ```
+### ?
+``bool?`` is hetzelfde als ```Nullable<bool>```. dit wil betekent dat de ```bool``` ook de waarde ```null``` kan hebben. Hieruit volgt automatisch dat er bv. in een selectie (of in het midden van de ```for```-regel ofzo) de bool als iets dergelijk zou moeten invullen:
+```C#
+OpenFileDialog verkenneropenen = new OpenFileDialog();
+if (verkennerOpenen.ShowDialog() == true) /*== true verplicht*/
+{ ... }
+//OF als:
+if (verkennerOpenen.ShowDialog().Value) /*hierbij moet de bool? een waarde hebben, dus is ie sowieso true of false*/
+{ ... }
+```
 
 ## Javascript
 valt nog te verbeteren:
