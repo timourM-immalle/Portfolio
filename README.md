@@ -728,6 +728,101 @@ if (verkennerOpenen.ShowDialog() == true) /*== true verplicht*/
 if (verkennerOpenen.ShowDialog().Value) /*hierbij moet de bool? een waarde hebben, dus is ie sowieso true of false*/
 { ... }
 ```
+### Nullpadd--
+```XAML
+<Window x:Class="Nullpad__.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nullpad__"
+        mc:Ignorable="d"
+        Title="Nullpad--" Height="350" Width="525">
+    <DockPanel>
+        <Menu x:Name="menu" DockPanel.Dock="Top">
+            <MenuItem Header="_Bestand">
+                <MenuItem x:Name="itemOpenen" Header="_Open" Click="itemOpenen_Click"/>
+                <MenuItem x:Name="itemOpslaan" Header="_Opslaan" Click="itemOpslaan_Click"/>
+                <Separator/>
+                <MenuItem x:Name="itemSluiten" Header="_Sluiten" Click="itemSluiten_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_Over"/>
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <TextBox x:Name="txtHoofdtekst" Margin="50,21,49,31"/>
+            <!--inhoud-->
+        </Grid>
+    </DockPanel>
+</Window>
+```
+code tot de 1e 2 event-handlers:
+```C#
+namespace Nullpad__
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private string huidigeFile = "";
+        private string basisDir;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            basisDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
+        private void itemOpenen_Click(object sender, RoutedEventArgs e)
+        {
+            //OpenFileDialog verkennerOpenen = new OpenFileDialog();
+            //verkennerOpenen.InitialDirectory = basisDir;
+
+            //if (verkennerOpenen.ShowDialog().Value /*hetzelfde als verkennerOpenen.ShowDialog() == true, aangezien het van type bool? is*/)
+            //{
+            //    MessageBox.Show(verkennerOpenen.FileName);
+            //}
+
+            ////StreamReader inputStream;
+            OpenFileDialog verkenner = new OpenFileDialog();
+
+            verkenner.InitialDirectory = basisDir;
+
+            if (verkenner.ShowDialog().Value)
+            {
+                huidigeFile = verkenner.FileName;
+                ////inputStream = File.OpenText(huidigeFile);
+                ////txtHoofdtekst.Text = inputStream.ReadToEnd();
+                ////inputStream.Close();
+                txtHoofdtekst.Text = File.ReadAllText(huidigeFile);
+            }
+        }
+
+        private void itemOpslaan_Click(object sender, RoutedEventArgs e)
+        {
+            if (huidigeFile == "")
+            {
+                SaveFileDialog opTeSlaan = new SaveFileDialog();
+
+                opTeSlaan.InitialDirectory = basisDir;
+
+                if (opTeSlaan.ShowDialog().Value)
+                {
+                    huidigeFile = opTeSlaan.FileName;
+                }
+            }
+
+            //StreamWriter outputStream = File.CreateText(huidigeFile);
+            //outputStream.Write(txtHoofdtekst.Text);
+            //outputStream.Close();
+            File.WriteAllText(huidigeFile, txtHoofdtekst.Text);
+        }
+    }
+}
+```
 
 ## Javascript
 valt nog te verbeteren:
