@@ -803,7 +803,7 @@ namespace Nullpad__
             File.WriteAllText(huidigeFile, txtHoofdtekst.Text);
         }
 	
-	 private void itemOpslaanAls_Click(object sender, RoutedEventArgs e)
+	private void itemOpslaanAls_Click(object sender, RoutedEventArgs e)
         {
 	    //Dit moet sowieso geopend worden; huidigeFile bestaat nu sowieso nog niet, dus geen selectie (i.t.t. vorige methode):
             SaveFileDialog opslaanDir = new SaveFileDialog();
