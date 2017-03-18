@@ -438,7 +438,7 @@ public partial class MainWindow : Window
     }
 }
 ```
-###H10: in dit programma kunnen we erg veel ballonnen toevoegen, maar op den duur wordt het erg onhandig:
+### H10: in dit programma kunnen we erg veel ballonnen toevoegen, maar op den duur wordt het erg onhandig:
 ```C#
 public partial class MainWindow : Window
     {
@@ -568,7 +568,7 @@ Voeg ook hier de nodige namespaces toe! U kan deze klasse als volgt aanroepen:
     }
 }
 ```
-###10.5 Dobbelstenen
+### 10.5 Dobbelstenen
 in de klasse ```Dobbelstenen``` Let op: het maken van een contructor waarin u een methode aanroept:
 ```C#
 public class Dobbelsteen
@@ -600,7 +600,7 @@ lblDobbelsteen.Content = Convert.ToString(dobbel.Waarde);
 PS: bij een ```Random```-klasse is de minValue altijd incl., maar de maxValue excl.!!!
 PS: Geef uw klasse niet/nooit dezelfde naam als uw project!
 
-###H13: Boodschappenlijst
+### H13: Boodschappenlijst
 Een 'grote' oef in het begin was er een oef van een boodschappenlijst. Mijn XAML ziet er als volgt uit:
 ```XAML
 <Window x:Class="H13Boodschappen.MainWindow"
@@ -708,26 +708,7 @@ public partial class MainWindow : Window
         }
 }
 ```
-## C# Interactive
-Dit valt een beetje te vergelijken met de JavaScript-console.
-Met bv. de volgende code:
-```C#
-string fileNamenText = File.ReadAllText("\\\\imma-fs-0003\\timour.meeusen$\\documents\\namen.csv");
-```
-kan u makkelijk de tekst in een bestaande file lezen. De volgende code kan u helpen het pad de vinden:
-```C#
-Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
-```
-### ?
-``bool?`` is hetzelfde als ```Nullable<bool>```. dit wil betekent dat de ```bool``` ook de waarde ```null``` kan hebben. Hieruit volgt automatisch dat er bv. in een selectie (of in het midden van de ```for```-regel ofzo) de bool als iets dergelijk zou moeten invullen:
-```C#
-OpenFileDialog verkenneropenen = new OpenFileDialog();
-if (verkennerOpenen.ShowDialog() == true) /*== true verplicht*/
-{ ... }
-//OF als:
-if (verkennerOpenen.ShowDialog().Value) /*hierbij moet de bool? een waarde hebben, dus is ie sowieso true of false*/
-{ ... }
-```
+
 ### Nullpadd--
 ```XAML
 <Window x:Class="Nullpad__.MainWindow"
@@ -744,6 +725,7 @@ if (verkennerOpenen.ShowDialog().Value) /*hierbij moet de bool? een waarde hebbe
                 <MenuItem x:Name="itemOpenen" Header="_Open" Click="itemOpenen_Click"/>
                 <MenuItem x:Name="itemOpslaan" Header="_Opslaan" Click="itemOpslaan_Click"/>
                 <Separator/>
+		<MenuItem x:Name="itemOpslaanAls" Header="_Opslaan als" Click="itemOpslaanAls_Click"/>
                 <MenuItem x:Name="itemSluiten" Header="_Sluiten" Click="itemSluiten_Click"/>
             </MenuItem>
             <MenuItem Header="_Help">
@@ -820,8 +802,49 @@ namespace Nullpad__
             //outputStream.Close();
             File.WriteAllText(huidigeFile, txtHoofdtekst.Text);
         }
+	
+	 private void itemOpslaanAls_Click(object sender, RoutedEventArgs e)
+        {
+	    //Dit moet sowieso geopend worden; huidigeFile bestaat nu sowieso nog niet, dus geen selectie (i.t.t. vorige methode):
+            SaveFileDialog opslaanDir = new SaveFileDialog();
+
+            opslaanDir.InitialDirectory = basisDir;
+
+            if (opslaanDir.ShowDialog().Value)
+            {
+                huidigeFile = opslaanDir.FileName;
+
+                File.WriteAllText(huidigeFile, txtInhoud.Text);
+            }
+        }
+
+        private void sluitItem_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0); //0 is de exitcode om gewoonweg te sluiten (risico: niet opgeslagen)
+        }
     }
 }
+```
+
+## C# Interactive
+Dit valt een beetje te vergelijken met de JavaScript-console.
+Met bv. de volgende code:
+```C#
+string fileNamenText = File.ReadAllText("\\\\imma-fs-0003\\timour.meeusen$\\documents\\namen.csv");
+```
+kan u makkelijk de tekst in een bestaande file lezen. De volgende code kan u helpen het pad de vinden:
+```C#
+Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
+```
+### ?
+``bool?`` is hetzelfde als ```Nullable<bool>```. dit wil betekent dat de ```bool``` ook de waarde ```null``` kan hebben. Hieruit volgt automatisch dat er bv. in een selectie (of in het midden van de ```for```-regel ofzo) de bool als iets dergelijk zou moeten invullen:
+```C#
+OpenFileDialog verkenneropenen = new OpenFileDialog();
+if (verkennerOpenen.ShowDialog() == true) /*== true verplicht*/
+{ ... }
+//OF als:
+if (verkennerOpenen.ShowDialog().Value) /*hierbij moet de bool? een waarde hebben, dus is ie sowieso true of false*/
+{ ... }
 ```
 
 ## Javascript
