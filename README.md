@@ -710,6 +710,7 @@ public partial class MainWindow : Window
 ```
 
 ### Nullpadd--
+#### gewoon Appje
 ```XAML
 <Window x:Class="Nullpad__.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -825,6 +826,76 @@ namespace Nullpad__
     }
 }
 ```
+
+#### tweede kolom
+```XAML
+<Window x:Class="Nullpad__.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nullpad__"
+        mc:Ignorable="d"
+        Title="Nullpad--" Height="350" Width="525">
+    <DockPanel>
+        <Menu x:Name="menu" DockPanel.Dock="Top">
+            ...
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom"> <!--boven Grid, anders wordt Grid eerder onderaan geplaatst-->
+            <TextBlock>Status</TextBlock>
+        </StatusBar>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtFileContents" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True"/>
+            <GridSplitter Grid.Column="2" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" Background="LightGray"/>
+            <DataGrid x:Name="parsedDataGrid" Grid.Column="3"/>
+        </Grid>
+    </DockPanel>
+</Window>
+```
+```C#
+ public partial class MainWindow : Window
+{
+        private string huidigeFile = "";
+        private string basisDir;
+        private DateTime geboorteDatum = new DateTime(1990, 1, 2);
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            basisDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            List<Personen> personen = new List<Personen>();
+
+            personen.Add(new Personen { Voornaam = "Willy", Achternaam = "Janssens", Geboortedatum = new DateTime(1990, 1, 2) });
+            personen.Add(new Personen { Voornaam = "Ed", Achternaam = "Sheeran", Geboortedatum = new DateTime(2000, 12, 26) });
+            personen.Add(new Personen { Voornaam = "Hans", Achternaam = "Van Broeckhoven", Geboortedatum = new DateTime(1981, 10, 12) });
+
+            parsedDataGrid.ItemsSource = personen;
+}
+...
+public class Personen
+{
+        public string Voornaam { get; set; }
+        public string Achternaam { get; set; }
+        public DateTime Geboortedatum { get; set; }
+
+        //zonder DataGrid, maar met ListView:
+        //public override string ToString()
+        //{
+        //    return Voornaam + " " + Achternaam + " (" + Geboortedatum.ToShortDateString() + ")";
+        //}
+}
+```
+Exceptions moeten nog aangevuld worden.
+PS: louter de belangrijke dingen (voor dit) zijn aangevuld ...
+
 
 ## C# Interactive
 Dit valt een beetje te vergelijken met de JavaScript-console.
