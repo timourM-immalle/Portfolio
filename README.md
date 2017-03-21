@@ -909,7 +909,7 @@ private void itemParsen_Click(object sender, RoutedEventArgs e)
                     if (rij != "")
                     {
                         string[] velden = rij.Split(';');
-                        var p = new Persoon();
+                        Persoon p = new Persoon();
                         p.Voornaam = velden[0];
                         p.Achternaam = velden[1];
                         p.Geboortedatum = DateTime.Parse(velden[2]);
