@@ -893,7 +893,38 @@ public class Personen
         //}
 }
 ```
-Exceptions moeten nog aangevuld worden.
+Exceptions moeten nog verbeterd en aangevuld worden:
+```C#
+private void itemParsen_Click(object sender, RoutedEventArgs e)
+{
+            List<Persoon> parsedPersonen = new List<Persoon>();
+            string[] filedata = txtFileContents.Text.Split('\n');
+
+            try
+            {
+                foreach (String rij in filedata)
+                {
+                    MessageBox.Show("[" + rij.Trim() + "]");
+
+                    if (rij != "")
+                    {
+                        string[] velden = rij.Split(';');
+                        var p = new Persoon();
+                        p.Voornaam = velden[0];
+                        p.Achternaam = velden[1];
+                        p.Geboortedatum = DateTime.Parse(velden[2]);
+                        parsedPersonen.Add(p);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            parsedDataGrid.ItemsSource = parsedPersonen;
+}
+```
 PS: louter de belangrijke dingen (voor dit) zijn aangevuld ...
 
 
