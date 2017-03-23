@@ -977,7 +977,7 @@ public class Console2
             SECOND_CLOSING_BRACE
         }
 
-        //Parset een Mustacheachtige (= met "{}") template-string (met max. 1 parameter) en print deze op de console met de parameter in "de" geaccentueerdeKleur.
+        //Parset een Mustacheachtige (= met "{}") template-string (met max. 1 parameter) en print deze op de console met de parameter 		//in "de" geaccentueerdeKleur.
         public static void Write(string str, ConsoleColor basiskleur, ConsoleColor geaccentueerdeKleur)
         {
             string voor = "";
@@ -1055,12 +1055,13 @@ public class Console2
 
             Console2.Write(voor, basiskleur);
             Console2.Write(geaccentueerd, geaccentueerdeKleur);
-            Console2.WriteLine(na, basiskleur);
+            Console2.Write(na, basiskleur);
         }
 
         public static void WriteLine(string str, ConsoleColor basiskleur, ConsoleColor geaccentueerdeKleur)
         {
             Console2.Write(str, basiskleur, geaccentueerdeKleur);
+	    Console2.WriteLine(str, basiskleur, geaccentueerdeKleur);
         }
     }
     
