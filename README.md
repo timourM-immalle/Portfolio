@@ -939,6 +939,222 @@ private void Parse_Click(object sender, RoutedEventArgs e)
 ```
 PS: louter de belangrijke dingen (voor dit) zijn aangevuld ...
 
+### ConsoleGTA
+ik heb het niet echt verder uitgebreid/kunnen uitbreiden ...
+```C#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleGTA
+{
+
+public class Console2
+    {
+        public static void Write(string str, ConsoleColor kleur)
+        {
+            Console.ForegroundColor = kleur;
+            Console.Write(str);
+            Console.ResetColor();
+        }
+
+        public static void WriteLine(string str, ConsoleColor kleur)
+        {
+            Console2.Write(str, kleur);
+            Console.WriteLine();
+        }
+
+        enum LexerState
+        {
+            BEFORE,
+            ACCENTED,
+            AFTER,
+            FIRST_OPENING_BRACE,
+            SECOND_OPENING_BRACE,
+            FIRST_CLOSING_BRACE,
+            SECOND_CLOSING_BRACE
+        }
+
+        //Parset een Mustacheachtige (= met "{}") template-string (met max. 1 parameter) en print deze op de console met de parameter in "de" geaccentueerdeKleur.
+        public static void Write(string str, ConsoleColor basiskleur, ConsoleColor geaccentueerdeKleur)
+        {
+            string voor = "";
+            string geaccentueerd = "";
+            string na = "";
+            LexerState ps = LexerState.BEFORE;
+
+            foreach (char c in str)
+            {
+                switch (ps)
+                {
+                    case LexerState.BEFORE:
+                        if (c != '{')
+                        {
+                            voor += c;
+                        }
+                        else
+                        {
+                            ps = LexerState.FIRST_OPENING_BRACE;
+                        }
+                        break;
+                    case LexerState.FIRST_OPENING_BRACE:
+                        if (c == '{')
+                        {
+                            ps = LexerState.SECOND_OPENING_BRACE;
+                        }
+                        else
+                        {
+                            ps = LexerState.BEFORE;
+                            voor += '{';
+                            voor += c;
+                        }
+                        break;
+                    case LexerState.SECOND_OPENING_BRACE:
+                        if (c == '}')
+                        {
+                            ps = LexerState.FIRST_CLOSING_BRACE;
+                        }
+                        else
+                        {
+                            ps = LexerState.ACCENTED;
+                            geaccentueerd += c;
+                        }
+                        break;
+                    case LexerState.ACCENTED:
+                        if (c == '}')
+                        {
+                            ps = LexerState.FIRST_CLOSING_BRACE;
+                        }
+                        else
+                        {
+                            geaccentueerd += c;
+                        }
+                        break;
+                    case LexerState.FIRST_CLOSING_BRACE:
+                        if (c == '}')
+                        {
+                            ps = LexerState.SECOND_CLOSING_BRACE;
+                        }
+                        else
+                        {
+                            geaccentueerd += '}';
+                            geaccentueerd += c;
+                        }
+                        break;
+                    case LexerState.SECOND_CLOSING_BRACE:
+                        ps = LexerState.AFTER;
+                        na += c;
+                        break;
+                    case LexerState.AFTER:
+                        na += c;
+                        break;
+                }
+            }
+
+            Console2.Write(voor, basiskleur);
+            Console2.Write(geaccentueerd, geaccentueerdeKleur);
+            Console2.WriteLine(na, basiskleur);
+        }
+
+        public static void WriteLine(string str, ConsoleColor basiskleur, ConsoleColor geaccentueerdeKleur)
+        {
+            Console2.Write(str, basiskleur, geaccentueerdeKleur);
+        }
+    }
+    
+    class Voertuig
+    {
+        private ConsoleColor kleur;
+
+        public Voertuig(ConsoleColor kleur)
+        {
+            this.kleur = kleur;
+        }
+
+        public virtual void Rij()
+        {
+            Console2.WriteLine("Het {{voertuig}} rijdt...", ConsoleColor.White, kleur);
+        }
+
+        public virtual void Stuur(int graden)
+        {
+            Console.WriteLine("Ik stuur " + graden + "graden");
+        }
+    }
+    
+    class Auto : Voertuig
+    {
+        public Auto() : base(ConsoleColor.DarkYellow)
+        {
+        }
+
+        public override void Rij()
+        {
+            Console2.WriteLine("De auto rijdt...", ConsoleColor.Red);
+        }
+    }
+    
+    class Vrachtwagen : Voertuig
+    {
+        public Vrachtwagen() : base(ConsoleColor.Green)
+        {
+        }
+
+        public override void Rij()
+        {
+            Console2.WriteLine("De vrachtwagen rijdt...", ConsoleColor.Red);
+        }
+
+        public override void Stuur(int graden)
+        {
+            Console.WriteLine("De vrachtwagenchauffeur kijkt in zijn dodehoekspiegel");
+            base.Stuur(graden);
+        }
+
+        public void LaadLeeg()
+        {
+        }
+    }
+    
+    class Brommer : Voertuig
+    {
+        public Brommer() : base(ConsoleColor.DarkRed)
+        {
+        }
+
+        public override void Rij()
+        {
+            Console2.WriteLine("De brommer rijdt...", ConsoleColor.Cyan);
+        }
+
+        public override void Stuur(int graden)
+        {
+            base.Stuur(graden);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Voertuig v = new Voertuig(ConsoleColor.Magenta);
+            Voertuig camion = new Vrachtwagen();
+            Voertuig brommerke = new Brommer();
+
+            v.Rij();
+            camion.Rij();
+            Console.WriteLine();
+
+            brommerke.Rij();
+            brommerke.Stuur(45);
+
+            Console2.Write("lol", ConsoleColor.Green, ConsoleColor.DarkRed);
+        }
+    }
+}
+```
 
 ## C# Interactive
 Dit valt een beetje te vergelijken met de JavaScript-console.
