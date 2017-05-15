@@ -293,151 +293,6 @@ public class Program
 ```
 https://dotnetfiddle.net/LddqqX
 
-### De basis van mijn eerste RM in WPF
-Ik heb tot nu toe een rekenmachine gemaakt die de som van 2 getallen kan berekenen. Dit is nog maar een begin; uitbreiding is noodzakelijk en is voor de toekomst (wellicht). Ik heb het volgende aangemaakt:
-XAML:
-```XAML
-<Window x:Class="RM.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RM"
-        mc:Ignorable="d"
-        Title="Calculator" Height="400" Width="236.834">
-    <Grid>
-        <TextBlock x:Name="schermBlock" HorizontalAlignment="Right" Height="33" Margin="0,10,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
-        <Button x:Name="btn1" Content="1" HorizontalAlignment="Left" Height="35" Margin="16,48,0,0" VerticalAlignment="Top" Width="47" Click="btn1_Click"/>
-        <Button x:Name="btn2" Content="2" HorizontalAlignment="Left" Height="35" Margin="68,48,0,0" VerticalAlignment="Top" Width="47" Click="btn2_Click"/>
-        <Button x:Name="Btn3" Content="3" HorizontalAlignment="Left" Height="35" Margin="120,48,0,0" VerticalAlignment="Top" Width="47" Click="Btn3_Click"/>
-        <Button x:Name="optelButton" Content="+" HorizontalAlignment="Left" Height="35" Margin="172,48,0,0" VerticalAlignment="Top" Width="47" Click="optelButton_Click"/>
-        <Button x:Name="btn4" Content="4" HorizontalAlignment="Left" Height="35" Margin="16,88,0,0" VerticalAlignment="Top" Width="47" Click="btn4_Click"/>
-        <Button x:Name="btn5" Content="5" HorizontalAlignment="Left" Height="35" Margin="68,88,0,0" VerticalAlignment="Top" Width="47" Click="btn5_Click"/>
-        <Button x:Name="btn6" Content="6" HorizontalAlignment="Left" Height="35" Margin="120,88,0,0" VerticalAlignment="Top" Width="47" Click="btn6_Click"/>
-        <Button x:Name="aftrekButton" Content="-" HorizontalAlignment="Left" Height="35" Margin="172,88,0,0" VerticalAlignment="Top" Width="47" Click="aftrekButton_Click"/>
-        <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" Height="35" Margin="16,128,0,0" VerticalAlignment="Top" Width="47" Click="btn7_Click"/>
-        <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" Height="35" Margin="68,128,0,0" VerticalAlignment="Top" Width="47" Click="btn8_Click"/>
-        <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" Height="35" Margin="120,128,0,0" VerticalAlignment="Top" Width="47" Click="btn9_Click"/>
-        <Button x:Name="uitkomstButton" Content="=" HorizontalAlignment="Left" Height="35" Margin="172,128,0,0" VerticalAlignment="Top" Width="47" Click="uitkomstButton_Click"/>
-        <Button x:Name="btn0" Content="0" HorizontalAlignment="Left" Height="35" Margin="16,168,0,0" VerticalAlignment="Top" Width="47" Click="btn0_Click"/>
-        <Button x:Name="clearButton" Content="CLEAR" HorizontalAlignment="Left" Height="35" Margin="120,168,0,0" VerticalAlignment="Top" Width="99" Click="clearButton_Click"/>
-        <TextBlock x:Name="cacheBlock" HorizontalAlignment="Left" Height="24" Margin="44,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="142"/>
-    </Grid>
-</Window>
-```
-code:
-```C#
-public partial class MainWindow : Window
-    {
-        private string huidigGetal = "";
-        private int som = 0;
-        private int cacheGetal = 0;
-        private int verschil = 0;
-
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-	private void OpOperatorknopGeklikt()
-        {
-            cacheBlock.Text = schermBlock.Text;
-            cacheGetal = Convert.ToInt32(cacheBlock.Text);
-            schermBlock.Text = null;
-            huidigGetal = "";
-        }
-	
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(1);
-            huidigGetal += "1";
-        }
-
-        private void btn2_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(2);
-            huidigGetal += "2";
-        }
-
-        private void Btn3_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(3);
-            huidigGetal += "3";
-        }
-
-        private void btn4_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(4);
-            huidigGetal += "4";
-        }
-
-        private void btn5_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(5);
-            huidigGetal += "5";
-        }
-
-        private void btn6_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(6);
-            huidigGetal += "6";
-        }
-
-        private void btn7_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(7);
-            huidigGetal += "7";
-        }
-
-        private void btn8_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(8);
-            huidigGetal += "8";
-        }
-
-        private void btn9_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(9);
-            huidigGetal += "9";
-        }
-
-        private void btn0_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text += Convert.ToString(0);
-            huidigGetal += "0";
-        }
-
-        private void clearButton_Click(object sender, RoutedEventArgs e)
-        {
-            schermBlock.Text = null;
-            huidigGetal = "";
-            cacheBlock.Text = null;
-            som = 0;
-            verschil = 0;
-            cacheGetal = 0;
-        }
-
-        private void optelButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpOperatorknopGeklikt();
-        }
-	
-	private void aftrekButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpOperatorknopGeklikt();
-        }
-
-        private void uitkomstButton_Click(object sender, RoutedEventArgs e)
-        {
-            som = Convert.ToInt32(huidigGetal) + cacheGetal;
-	    verschil = cacheGetal - Convert.ToInt32(huidigGetal);
-            schermBlock.Text = null;
-            cacheBlock.Text = null;
-            schermBlock.Text = Convert.ToString(som);
-        }
-    }
-}
-```
 ### H10: in dit programma kunnen we erg veel ballonnen toevoegen, maar op den duur wordt het erg onhandig:
 ```C#
 public partial class MainWindow : Window
@@ -1156,6 +1011,10 @@ public class Console2
     }
 }
 ```
+- ``abstract`` wil zeggen dat de klasse overgeërfd **moet** worden. U maakt een abstracte klasse, als u min. 1 abstracte methode o.d. gebruikt.
+- ``virtual`` wil zeggen dat u het mogelijk zal aanpassen (liefst in min. 1) subklasse.
+- u maakt het aan met deze woorden, maar roept beiden aan met ``override``
+- polymorfie: ...
 
 ## C# Interactive
 Dit valt een beetje te vergelijken met de JavaScript-console.
