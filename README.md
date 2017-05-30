@@ -1036,6 +1036,11 @@ if (verkennerOpenen.ShowDialog() == true) /*== true verplicht*/
 if (verkennerOpenen.ShowDialog().Value) /*hierbij moet de bool? een waarde hebben, dus is ie sowieso true of false*/
 { ... }
 ```
+### value vs referentietypes
+zie H 5....-5....
+- value type: int; bv. ...
+- referentietypes: ...; bv. klasse, ...
+heap vs stack (geheugen)
 
 ## Javascript
 valt nog te verbeteren:
